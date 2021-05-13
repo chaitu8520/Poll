@@ -8,33 +8,41 @@ include 'mysqlCon.php';
  
 
 ?>
-<form method ="post" action="/poll/submitPoll.php">
-    <label for="pollId">Poll ID :</label> <?php echo $pollId;?><br><br>
-	<input type ="hidden" name="pollId" value="<?php echo $pollId;?>"/>
+<body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
 
-  <label for="pQues">Poll Question  :</label> 
-  <?php
-     $sql="select distinct(pollQues) as pollQues,pollOption from poll where pollId=".$pollId.";";
-	// echo $sql;
-	$res=$con->query($sql);
-	$pollQues="";
-	$f=true;
-	while($row=$res->fetch_assoc()) {
-	//echo $row['pollQues'];
-	if($f==true)
-     echo	$row['pollQues']."<br>";
- $f=false;
- 
-     echo "<input type = 'Radio' Name ='pollOption' value= '".$row['pollOption']."'>".$row['pollOption']."</input><br>";
-	 
- 
-	 
-		
-	} 
-	 
-  
+	<header class="show_hdr">  
+		<h1 for="pollId">You have selected the Poll_ID : <?php echo $pollId;?></h1>
+		<input type ="hidden" name="pollId" value="<?php echo $pollId;?>"/>
+	</header>
 
-  ?>
- 
-  <br><br><input type="submit" value="Submit">
-</form>
+	<div class="show_poll">
+		<form id = "s_frm" method ="post" action="/poll/submitPoll.php">
+		  <input type ="hidden" name="pollId" value="<?php echo $pollId;?>"/>
+		  <label for="pQues">Poll Question  :</label> 
+		  <?php
+		     $sql="select distinct(pollQues) as pollQues,pollOption from poll where pollId=".$pollId.";";
+			// echo $sql;
+			$res=$con->query($sql);
+			$pollQues="";
+			$f=true;
+			while($row=$res->fetch_assoc()) {
+			//echo $row['pollQues'];
+			if($f==true)
+		     echo	$row['pollQues']."<br>";
+			 $f=false;
+		 
+		     echo "<input type = 'Radio' Name ='pollOption' value= '".$row['pollOption']."'>".$row['pollOption']."</input><br>";
+				
+			} 
+			 
+		  
+
+		  ?>
+		 
+		  <br><br><input id = "sbt" type="submit" value="Submit">
+		</form>
+	</div>
+</body>
