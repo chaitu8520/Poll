@@ -6,7 +6,7 @@ include 'mysqlCon.php';
   $pollId = $_POST['pollId'];
    $pollOption = $_POST['pollOption'];
    if($pollOption=='') {
-	echo "pls select one option";
+	echo "Please select one option";
 return;
 	
    }
@@ -15,7 +15,16 @@ return;
  // echo $sql;
   $res=$con->query($sql);
   if($res)
-	echo "<h3> Response has been submitted</h3> Do you want to see result : <a href='/poll/showResPoll.php?pollId=".$pollId."'>".$pollId."</a>";
+  {
+    echo "<script> alert('Your response has been submitted successfully...')</script>";
+    ?>
+    <head>
+      <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <div id ='sb_poll'>
+    <?php
+	   echo "<h3>You can checkout the results of Poll_ID <a href='/poll/showResPoll.php?pollId=".$pollId."'>".$pollId." </a> here.</h3>";
+  }
    else echo "error";
  }
  
