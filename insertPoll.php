@@ -33,7 +33,16 @@ $con->close();
 ?>
 
 <html>
-
-<h1>Poll Created : <a href="/poll/showPoll.php?pollId=<?php echo $pollId; ?>"><?php echo $pollId; ?></a></h1>
-
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<script type="text/javascript">
+  alert("You have created the poll successfully...")
+</script>
+<body>
+  <div class="poll_created">
+    <h1> You can select the following poll which you have created.</h1> 
+    <h1>Poll created with : <a href="/poll/showPoll.php?pollId=<?php echo $pollId; ?>"><?php echo $pollId; ?></a></h1>
+  </div>
+</body>
 </html>
